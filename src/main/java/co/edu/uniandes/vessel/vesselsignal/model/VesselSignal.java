@@ -1,33 +1,31 @@
 package co.edu.uniandes.vessel.vesselsignal.model;
 
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
+import javax.lang.model.element.NestingKind;
+import java.util.Date;
+
+
+@Document(collection = "vessels")
+@Getter
+@Setter
 public class VesselSignal {
 
     @Id
     public String id;
+    @Field("Key")
     public String key;
-    public String baseDate;
+    @Field("BaseDate")
+    public Date baseDate;
+    @Field("CargoName")
     public String cargoName;
+    @Field("State")
     public String state;
+    @Field("VesselType")
     public String typeName;
-
-    public VesselSignal() {}
-
-    public VesselSignal(String id, String key, String baseDate, String cargoName, String state, String typeName) {
-        this.id = id;
-        this.key = key;
-        this.baseDate = baseDate;
-        this.cargoName = cargoName;
-        this.state = state;
-        this.typeName = typeName;
-    }
-
-    @Override
-    public String toString() {
-        return String.format(
-                "Vessel[id=%s, key='%s', state='%s']",
-                id, key, state);
-    }
 
 }
