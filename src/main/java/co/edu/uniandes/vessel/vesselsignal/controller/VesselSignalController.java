@@ -1,8 +1,6 @@
 package co.edu.uniandes.vessel.vesselsignal.controller;
 
-import co.edu.uniandes.vessel.vesselsignal.dto.StateByPeriodCovidDto;
-import co.edu.uniandes.vessel.vesselsignal.dto.StateByPeriodDto;
-import co.edu.uniandes.vessel.vesselsignal.dto.StateCargoByPeriodDto;
+import co.edu.uniandes.vessel.vesselsignal.dto.*;
 import co.edu.uniandes.vessel.vesselsignal.model.VesselSignal;
 import co.edu.uniandes.vessel.vesselsignal.service.VesselSignalService;
 import lombok.extern.slf4j.Slf4j;
@@ -43,13 +41,18 @@ public class VesselSignalController {
     }
 
     @GetMapping("/traffic-vessel-period")
-    public List<StateByPeriodDto> trafficVasselPeriod(@RequestParam("start-date") String startDate,
+    public List<StateByPeriodDto> trafficVesselPeriod(@RequestParam("start-date") String startDate,
                                                        @RequestParam("end-date") String endDate) throws ParseException {
         return vesselSignalService.trafficStateByPeriod(startDate,endDate);
     }
 
-    @GetMapping
-    public String query2(){
-        return "";
+    @GetMapping("/traffic-vessel-relation-day")
+    public List<RelationByDayWeekDto> trafficVesselRelationDay()throws ParseException{
+        return vesselSignalService.relationDayWeekCargo();
+    }
+
+    @GetMapping("/traffic-vessel-relation-type")
+    public List<RelationByTypeDto> trafficVesselRelationType()throws ParseException{
+        return vesselSignalService.relationStateByType();
     }
 }
